@@ -46,7 +46,6 @@
 }
 
 .button {
-  @include mixins.green-button;
-
   margin-top: 20px;
+  @include mixins.green-button;  
 }

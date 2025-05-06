@@ -25,11 +25,11 @@ td {
   // }
 }
 
-.wrapper {
-  @include mixins.page-background;
+.wrapper { 
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @include mixins.page-background;
 }
 
 .title {
@@ -68,12 +68,12 @@ td {
 }
 
 .buttonBook {
-  @include mixins.green-button;
-
   position: fixed;
   left: 50%;
   bottom: 40px;
   transform: translateX(-50%);
+
+  @include mixins.green-button;
 }
 
 .disabled {

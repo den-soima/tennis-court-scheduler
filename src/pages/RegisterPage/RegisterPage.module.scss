@@ -87,10 +87,11 @@
 }
 
 .buttonCancel {
-  @include mixins.green-button;
-
   background-color: variables.$white-background;
   border: 1px solid variables.$red-notification-text;
+
+  @include mixins.green-button;
+  
 }
 
 .button {
