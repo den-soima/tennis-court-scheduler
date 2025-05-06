@@ -15,21 +15,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// HTTPS credentials
-const httpsOptions = {
-  key: fs.readFileSync('localhost-key.pem'),
-  cert: fs.readFileSync('localhost.pem'),
-};
 
 // Middleware to parse JSON (useful for APIs)
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: ['http://localhost:5173'], // Add your front-end URL here
-//     credentials: true,
-//   })
-// );
 
 const corsOptions = {
   origin: ['https://localhost:5173'],
@@ -41,18 +30,39 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log('Connected to MongoDB');
-    https.createServer(httpsOptions, app).listen(PORT, () => {
-      console.log(`🚀 HTTPS Server running at https://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
+
+if (process.env.NODE_ENV === 'development') {
+    // Локальний HTTPS-сервер
+    const httpsOptions = {
+        key: fs.readFileSync('cert/localhost-key.pem'),
+        cert: fs.readFileSync('cert/localhost.pem'),
+    };
+
+    mongoose
+        .connect(process.env.MONGO_URI as string)
+        .then(() => {
+            console.log('Connected to MongoDB');
+            https.createServer(httpsOptions, app).listen(PORT, () => {
+                console.log(`🚀 HTTPS Server running at https://localhost:${PORT}`);
+            });
+        })
+        .catch((err) => {
+            console.error('MongoDB connection error:', err);
+        });
+} else {
+    // Продакшен-сервер на HTTP (Render сам забезпечує HTTPS)
+    mongoose
+        .connect(process.env.MONGO_URI as string)
+        .then(() => {
+            console.log('Connected to MongoDB');
+            app.listen(PORT, () => {
+                console.log(`Server running on port ${PORT}`);
+            });
+        })
+        .catch((err) => {
+            console.error('MongoDB connection error:', err);
+        }); 
+}
 
 // Default Route
 app.get('/', (_, res) => {
