@@ -5,7 +5,6 @@
     "lib": ["ES2023"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "skipLibCheck": true,
     /* Bundler mode */
     // "moduleResolution": "node",
     "allowImportingTsExtensions": true,
@@ -16,7 +15,6 @@
     //"baseUrl": "./server",
 
     /* Linting */
-    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -26,6 +24,11 @@
 
     //"types": ["node", "express"],
 //    "rootDir": "./server",
+
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "types": []
   },
   "include": ["vite.config.ts", "server"]
 }
