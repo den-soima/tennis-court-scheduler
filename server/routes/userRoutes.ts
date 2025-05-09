@@ -1,10 +1,24 @@
 import bcrypt from 'bcrypt';
 import express from 'express';
 import { User } from '../models/User.ts';
+import { Request, Response } from 'express';
 
 const router = express.Router();
 
-router.post('/', async (req, res: any) => {
+// type UserRequestBody = {
+//     name: string;
+//     phone: string;
+//     password: string;
+// }
+
+
+router.post(
+    '/',
+    async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+     
   console.log('Regist route hit');
 
   try {
@@ -13,9 +27,10 @@ router.post('/', async (req, res: any) => {
     const existingUser = await User.findOne({ phone });
 
     if (existingUser) {
-      return res
+       res
         .status(409)
         .json({ error: 'Номер телефону вже зареєстрований' });
+       return;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

@@ -4,3 +4,13 @@ declare module '*.scss' {
     export default content;
 }
 
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+    VITE_API_URL?: string;
+    // інші VITE_* змінні
+}
+
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
+}
