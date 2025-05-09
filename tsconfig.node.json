@@ -22,7 +22,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "rootDir": ".",
-    "types": ["node"],
+    //"types": ["node"],
+
     //"types": ["node", "express"],
 //    "rootDir": "./server",
   },
