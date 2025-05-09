@@ -7,6 +7,6 @@
     },
     "include": [
         "vite.config.ts",
-        "src/types/vite.d.ts"
+        "vite.d.ts"
     ]
 }
