@@ -30,5 +30,5 @@
     "strict": false,
     "types": []
   },
-  "include": ["vite.config.ts", "server"]
+  "include": ["server"]
 }
