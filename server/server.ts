@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.ts';
@@ -9,6 +9,8 @@ import cors from 'cors';
 // import validateTelegramData from './telegram-auth/validateTelegramData.ts';
 import fs from 'fs';
 import https from 'https';
+
+
 
 dotenv.config();
 
@@ -65,11 +67,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Default Route
-app.get('/', (_, res) => {
+app.get('/', (_: Request, res: Response) => {
   res.send('API is running...');
 });
 
-app.get('/api/hello', (_, res) => {
+app.get('/api/hello', (_ :Request, res:Response) => {
   res.json({ message: 'Hello from Express!' });
 });
 
