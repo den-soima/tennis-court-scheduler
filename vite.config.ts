@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import mkcertImport from 'vite-plugin-mkcert';
+//import sass from 'sass';
 
 const mkcert = mkcertImport as unknown as () => any;
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), mkcert()],
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {     
+  //         implementation: sass,
+  //     },
+  //   },
+  // },
   base: '/scheduler/',
   build: {
     outDir: 'dist',
