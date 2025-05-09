@@ -21,8 +21,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "rootDir": "."
-    // "rootDir": "server",
+    "rootDir": ".",
+    "types": ["node", "express"],
+//    "rootDir": "./server",
   },
   "include": ["vite.config.ts", "server"]
 }
