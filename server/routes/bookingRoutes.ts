@@ -1,9 +1,9 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import { Booking } from '../models/Booking.ts';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response):Promise<void> => {
   try {
     const newBooking = new Booking(req.body);
     await newBooking.save();
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (_, res) => {
+router.get('/', async (_: Request, res: Response): Promise<void> => {
   try {
     const bookings = await Booking.find();
     res.status(200).json(bookings);

@@ -22,7 +22,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "rootDir": ".",
-    "types": ["node", "express"],
+    "types": ["node"],
+    //"types": ["node", "express"],
 //    "rootDir": "./server",
   },
   "include": ["vite.config.ts", "server"]
