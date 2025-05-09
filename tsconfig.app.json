@@ -22,7 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    //"rootDir": "src"
+    "rootDir": "src"
   },  
-  "include": ["src", "src/styles.d.ts", "src/types", "vite.config.ts"]
+  "include": ["src", "src/styles.d.ts", "src/types"]
 }
