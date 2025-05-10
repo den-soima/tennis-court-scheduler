@@ -35,6 +35,10 @@ app.use('/scheduler', express.static(buildPath));
 app.get('/scheduler/*', (_:Request, res:Response) => {
     res.sendFile(path.join(buildPath, 'index.html'));
 });
+// Обробляємо редирект з кореневого URL на /scheduler
+app.get('/', (_, res) => {
+    res.redirect('/scheduler');
+});
 
 
 const corsOptions = {
