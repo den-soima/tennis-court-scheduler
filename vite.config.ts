@@ -16,8 +16,10 @@ export default defineConfig({
   //   },
   // },
   base: '/scheduler/',
+  //base: '/',
   build: {
     outDir: 'dist',
+    chunkSizeWarningLimit: 1024, // Ліміт в 1 МБ для попередження
   },
   server: {
     port: 5173,
@@ -39,3 +41,5 @@ export default defineConfig({
     },
   },
 });
+
+

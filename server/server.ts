@@ -9,10 +9,14 @@ import cors from 'cors';
 // import validateTelegramData from './telegram-auth/validateTelegramData.ts';
 import fs from 'fs';
 import https from 'https';
-
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +24,17 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON (useful for APIs)
 app.use(express.json());
+
+// Шлях до згенерованих файлів фронтенду (залежить від того, як ви налаштували Vite)
+const buildPath = path.join(__dirname, '..', 'dist');  // Зазвичай для Vite це dist
+
+/// Обслуговуємо статичні файли з префіксом '/scheduler'
+app.use('/scheduler', express.static(buildPath));
+
+// Для всіх інших запитів (якщо це не API) відправляємо index.html
+app.get('/scheduler/*', (_:Request, res:Response) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+});
 
 
 const corsOptions = {
